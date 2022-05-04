@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf dist && swc ./src -d dist",
     "start": "node dist/index.js",
-    "start:docker": "yarn build && yarn start" 
+    "start:docker": "yarn build && node --inspect=0.0.0.0 dist/index.js" 
   },
   "volta": {
     "node": "17.9.0"
