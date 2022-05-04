@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && swc ./src -d dist",
+    "db:console": "docker compose exec postgres psql -h localhost -U postgres -d webapp_dev",
     "start": "node dist/index.js",
     "start:docker": "yarn build && node --inspect=0.0.0.0 dist/index.js" 
   },
