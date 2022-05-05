@@ -1,4 +1,4 @@
-FROM node:17.9
+FROM node:17.3
 
 WORKDIR /usr/src/app
 
@@ -13,4 +13,4 @@ COPY . .
 RUN yarn build
 
 EXPOSE 4000
-CMD ["yarn", "start"]
+CMD [ "yarn", "start" ]
