@@ -10,16 +10,15 @@
     "docker:db:migrate": "docker compose run backend yarn db:migrate",
     "docker:db:migrate:undo": "docker compose run backend npx prisma migrate reset",
     "rebuild:be": "docker compose build backend && docker compose rm --stop backend && docker compose up -d backend",
-    "prettier:check": "prettier --config .prettierrc --check \"src/**/*.{ts,css,html}\"",
+    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "start": "node dist/index.js",
     "start:docker": "yarn db:migrate && yarn build && node --inspect=0.0.0.0 dist/index.js",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "yarn prettier --write",
-      "npx eslint --fix"
-    ]
+    "*.{js,ts}": "npx eslint --cache --fix",
+    "*.+(js|ts|json)": "npx prettier --write"
   },
   "volta": {
     "node": "17.9.0"
@@ -40,7 +39,8 @@
     "@types/node": "^17.0.31",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
-    "eslint": "^8.14.0",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.0",
     "lint-staged": "^12.4.1",
     "prisma": "^3.13.0",
