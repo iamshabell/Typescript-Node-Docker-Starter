@@ -12,17 +12,14 @@
     "rebuild:be": "docker compose build backend && docker compose rm --stop backend && docker compose up -d backend",
     "prettier:check": "prettier --config .prettierrc --check \"src/**/*.{ts,css,html}\"",
     "start": "node dist/index.js",
-    "start:docker": "yarn db:migrate && yarn build && node --inspect=0.0.0.0 dist/index.js"
+    "start:docker": "yarn db:migrate && yarn build && node --inspect=0.0.0.0 dist/index.js",
+    "prepare": "husky install"
   },
   "lint-staged": {
-    "src/**/*.{ts,css,html}": [
-      "npm run prettier:check"
+    "**/*.{js,jsx,ts,tsx}": [
+      "yarn prettier --write",
+      "npx eslint --fix"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "volta": {
     "node": "17.9.0"
@@ -44,7 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "eslint": "^8.14.0",
-    "husky": "^8.0.1",
+    "husky": "^8.0.0",
     "lint-staged": "^12.4.1",
     "prisma": "^3.13.0",
     "rimraf": "^3.0.2",
